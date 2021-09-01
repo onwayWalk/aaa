@@ -104,7 +104,7 @@ def quqian():
             print('您现在账户%s元'%(bank[username]['money']))
             a=input('请输入取款金额：')
             if a.isdigit():
-                if a<= bank[username]['money']:
+                if int(a)<= bank[username]['money']:
                     bank[username]['money']-=int(a)
                     print('尊敬的%s,存钱已完成，您现在账户余额：%s'%(username,bank[username]['money']))
                     break
@@ -129,11 +129,13 @@ def zhuanzhang():
             gousername=input('请输入要转给的用户名：')
             while gousername not in bank:
                 gousername=input('你要转给的用户不存在，请重新输入：')
-
+            if username==gousername:
+                print("自己转自己好玩是吧？")
+                continue
             print('您现在账户%s元' % (bank[username]['money']))
             gomoney=input('请输入转账金额')
             if gomoney.isdigit():
-                if gomoney<= bank[username]['money']:
+                if int(gomoney)<= bank[username]['money']:
                     bank[username]['money']-=int(gomoney)
                     bank[gousername]['money'] += int(gomoney)
                     print('尊敬的%s,转账已完成，您现在账户余额：%s'%(username,bank[username]['money']))
