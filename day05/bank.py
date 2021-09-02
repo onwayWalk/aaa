@@ -106,7 +106,7 @@ def quqian():
             if a.isdigit():
                 if int(a)<= bank[username]['money']:
                     bank[username]['money']-=int(a)
-                    print('尊敬的%s,存钱已完成，您现在账户余额：%s'%(username,bank[username]['money']))
+                    print('尊敬的%s,取钱已完成，您现在账户余额：%s'%(username,bank[username]['money']))
                     break
                 else :
                     print("你在想屁吃")
