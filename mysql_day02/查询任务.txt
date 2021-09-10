@@ -30,15 +30,17 @@ SELECT * FROM t_employees WHERE comm IS NULL OR comm<=1000;
 
 #8. 查询名字由三个字组成的员工。
 
-SELECT * FROM t_employees WHERE LENGTH(ename)>8;
+SELECT * FROM t_employees WHERE LENGTH(ename)=9 ;
+SELECT * FROM t_employees WHERE  ename LIKE '___';
+
 
 #9.查询2000年以及以后入职的员工。
 
-SELECT * FROM t_employees WHERE YEAR(hiredate)>2000;
+SELECT * FROM t_employees WHERE YEAR(hiredate)>=2000;
 
 #10.查询所有员工详细信息，用编号升序排序
 
-SELECT * FROM t_employees  ORDER BY deptno;
+SELECT * FROM t_employees  ORDER BY empno ASC;
 
 #11.查询所有员工的详细信息，用工资降序排序，如果工资相同使用入职日期升序排序
 
