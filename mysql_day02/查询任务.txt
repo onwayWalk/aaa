@@ -1,3 +1,5 @@
+#where 和 having的区别
+1.where
 #1.查询出部门编号为30的所有员工
 
 SELECT 	*   FROM    t_employees   WHERE  deptno='30';
@@ -18,11 +20,14 @@ SELECT ename FROM t_employees WHERE comm>sal*0.6;
 
 SELECT * FROM t_employees WHERE job='经理' AND deptno='10' OR job='分析员' AND deptno='20';
 
-#找出部门编号为10中所有经理，部门编号为20中所有分析员，还有既不是
+#6. 找出部门编号为10中所有经理，部门编号为20中所有分析员，还有既不是
 #经理又不是武装上将但其工资大或等于3000的所有员工详细资料。
 
 SELECT * FROM t_employees WHERE job='经理' AND deptno='10' OR job='分析员' AND deptno='20' 
 OR job !='经理' AND job !='武装上将' AND sal>='3000';
+
+SELECT *FROM t_employees WHERE (deptno=10 AND job='经理')OR(deptno=20
+AND job='分析员')OR(job NOT IN ("经理","销售员")AND sal>=2000);
 
 #7.无奖金或奖金低于1000的员工。
 
@@ -58,3 +63,23 @@ SELECT deptno,COUNT(*)AS '雇员数量' FROM t_employees GROUP BY deptno;
 
 SELECT job AS '工作职位',MAX(sal)AS '最高工资',MIN(sal)AS '最低工资',
 COUNT(*)AS '人数' FROM t_employees GROUP BY job;
+
+#15.查询出与刘备同职位的员工。
+SELECT * FROM t_employees WHERE job = (SELECT job FROM t_employees WHERE ename='刘备');
+
+# 16. 查询一下黄忠的上级信息
+
+SELECT * FROM t_employees WHERE empno=(SELECT mgr FROM t_employees WHERE ename='黄忠');
+
+# 16. 查询一下黄忠的上级信息
+
+SELECT * FROM t_employees WHERE empno=(SELECT mgr FROM t_employees WHERE ename='黄忠');
+
+#17.列出所有员工的姓名及其直接上级的姓名。
+
+SELECT a.ename,b.ename FROM t_employees AS a,t_employees AS b WHERE a.`MGR`=b.`empno`;
+SELECT a.ename,b.ename FROM t_employees a INNER JOIN t_employees b ON a.`MGR`=b.`empno`;
+
+#18.将所有人的全部信息展示出来。
+
+SELECT a.*,c.`dname`,c.`loc` FROM t_employees a  JOIN t_dept AS c ON a.`deptno`=c.deptno;
