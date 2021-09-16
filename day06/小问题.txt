@@ -1,0 +1,17 @@
+知识点：1.db=pymysql.connect(参数)，作用：连接mysql数据库，参数主要有host,root,password,database,charset, 
+	如果你的数据库端口号不是用的3306，需要port
+	2.c=db.cursor() 作用打开目的数据库的游标
+	游标就是一块缓存区，（个人理解：它里面有三部分，一部分是连接的数据库的表，一部分是执行的sql语句，
+	还有一部分是查询结果集）他可以将查询结果转化成结果集，我们是用数据库查询的结果一般都是以表形式存
+	在的我们不方便调用我们想用的数值，游标他将表以元组的形式表现方便我们调用。
+	3.c.execute(sql) 控制台里操作数据库语句 注意：select
+		select from where 查询  
+		insert into value() 插入
+		update table set where 更新
+		delete from where 删除
+	4.select 的结果我们用游标的几个方法来查看 c.fenthone()返回一行，c.fenthmany()多行，
+	c.fenthall()所用行。
+	5.db.commit()每一次对数据库进行修改操作时，我们都要进行提交事务，因为我们操作的都是游标里的表，当未及时提交时，
+	会导致数据库内容未及时修改而导致后面的操作出错。
+	6.操作完成后要关闭游标，不关闭游标他会占有你的内存。
+	7.关闭数据库连接，数据库连接的数量是有限的。
