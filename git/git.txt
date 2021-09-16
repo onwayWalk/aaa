@@ -1,0 +1,26 @@
+一、	基本指令
+Mkdir   cd    touch  
+cd demo/aaa 打开demo的aa文件
+mkdir aa 创建aa文件夹
+touch aa.txt 创建 aa.txt文本
+vim aa.txt 编辑aa.txt文本 w保存q退出！强制
+
+ 
+git  init  	初始化仓库 ，添加.Git
+git  add 	文件   将文件提交到暂存区（./*.c/a.txt）
+git  commit –m “备注”  将暂存区内容提交到版本库
+git  clone  地址  （仓库名称） （地址前不用加origin） 克隆一个git仓库到本地
+git  push  远程主机名（origin） 本地分支名：远程分支名  将本地分支上传到远程分支并合并
+git  push  远程主机名（origin） 分支名  分支名相同
+git  remote add  远程主机名（origin） url  连接远程主机
+git remote add origin https://github.com/onwayWalk/aaa.git 给本地库添加远程仓库地址https://github.com/onwayWalk/aaa.git
+git remote -v 查看远程连接
+
+git branch 查看本地分支
+git branch aa 创建aa分支
+git checkout aa 切换到aa分支
+git checkout -b aa 创建并切换到aa
+
+git config --local --list /git config --local -l  查看仓库级别的配置文件-e编译
+git config --global --list /git config --global -l  用户级别
+git config --system --list/git config --system -l   系统级别
