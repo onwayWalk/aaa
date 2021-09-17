@@ -1,0 +1,8 @@
+1.python 3.9搭xlrd2.0.1报错Excel xlsx file； not supported
+原因;xlrd最新版只支持xls文件，不支持xlsx文件
+解决方式：安装1.2.0或之前的版本
+
+1.python 3.9调 用 xlrd 0.9.3 报错 
+原因;在python3.9中，优化删除了etiterator()方法,
+解决方案 将xlsx.py中getiterator()方法替换为iter().
+
