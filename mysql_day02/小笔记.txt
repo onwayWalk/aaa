@@ -1,0 +1,17 @@
+	
+1．	有点模糊的地点
+1）	多次排序，例如：查询所有员工的详细信息，用工资降序排序，如果工资相同使用入职日期升序排序，刚开始想的逻辑是先进行降序排序在进行升序排序，也就是select双层嵌套 select * from(select * from t_employees order by sal desc) as t1 order by hiredate asc;但结果跟select * from t_employees order by hiredate asc;没啥区别，有想了用if,但if忘得差不多了不怎么会用，查询了一下才知道 select * from t_employees order by sal desc,hiredate asc;就是先根据最先的排序，当该排序项出现重复的时候，看是否后面还有其他排序项，如果有根据后面的把前面相同排序项的进行排序，否则按出现的先后顺序排序。
+2）	查询字段长度,例如：查询名字由三个字组成的员工。我是用的lenth()方法，因为在mysql中使用utf8编码，一个汉字占三个字节，所以我写的是;select * from t_employees where lenth(ename)=9;（补充说明 gbk 一个汉字占两个字节）。
+	方法二利用模糊查询 select * from t_employees where ename like ‘___’
+3．	知识盲区
+1）	数据库 字符集设置 character set utf8;utf8里一个汉字占3个字节，gbk占2个字节。
+2）	is和 = 的区别，is 的返回值是布尔类型，sql中的布尔类型有三种：True，flase，unknown，null返回的就是Unknown，=返回值只有值类型不包括null的情况。
+	is全区间（null,not null）,=全区间（!=,=,null）
+3）	where 和having 
+	where是一个约束声明,使用where来约束来自数据库的数据;
+	where是在结果返回之前起作用的;
+	where中不能使用聚合函数。
+	having是一个过滤声明;
+	在查询返回结果集以后，对查询结果进行的过滤操作;
+	在having中可以使用聚合函数。 
+	where>gtoup by>having
