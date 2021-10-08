@@ -1,0 +1,9 @@
+class Calculater:
+    def add(self,a,b):
+        return  a+b
+    def minus(self,a,b):
+        return  a-b
+    def multiplication(self,a,b):
+        return  a*b
+    def divided_by(self,a,b):
+        return  a/b
